@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import SignUpPage from '../views/SignUpPage.vue';
+import CollectionRestaurants from '../views/CollectionRestaurants';
+import Restaurant from '../views/Restaurant';
+import { Auth } from 'aws-amplify';
 
 const routes = [
   {
@@ -7,15 +11,25 @@ const routes = [
     name: "Home",
     component: Home,
   },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    {
+    path: "/signup",
+    name: "SignUpPage",
+    component: SignUpPage
+
   },
+  {
+    path: "/restaurant/:id",
+    name: "Restaurant",
+    component: Restaurant,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: "/collectionrestaurants",
+    name: "CollectionRestaurants",
+    component: CollectionRestaurants,
+    meta: { requiresAuth: true }
+
+  }
 ];
 
 const router = createRouter({
@@ -23,4 +37,19 @@ const router = createRouter({
   routes,
 });
 
+
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const isAuthenticated = await Auth.currentUserInfo();
+
+  if (requiresAuth && !isAuthenticated) {
+    next("/");
+  } else {
+    next()
+  }
+
+})
+
 export default router;
+
+
