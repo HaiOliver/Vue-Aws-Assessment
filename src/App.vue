@@ -1,9 +1,30 @@
+
+
 <template>
-  <div id="nav">
-    <router-link to="/">Restaurant collections</router-link>
+  <div id="app">
+    <div id="nav">
+    <Nav />
+      <router-link to="/">Restaurant collections</router-link>
+
+    </div>
+    <router-view />
   </div>
-  <router-view />
 </template>
+<script>
+import Nav from "@/components/Nav.vue";
+import { mapActions } from "vuex";
+export default {
+  mounted() {
+    this.authAction();
+  },
+  components: {
+    Nav,
+  },
+  methods: {
+    ...mapActions("auth", ["authAction"]),
+  },
+};
+</script> -->
 
 <style>
 #app {

@@ -11,14 +11,14 @@ export const auth = {
 
   actions: {
       async login({ commit }, { username, password }) {
-            alert("log in in auth.js called")
+
             try {
                 await Auth.signIn({
                     username,
                     password
                 });
-                const userInfo = await Auth.currentUserInfo();
-                commit("setUser", userInfo);
+                const currentUser = await Auth.currentUserInfo();
+                commit("setUser", currentUser);
                 return Promise.resolve("Success");
 
 

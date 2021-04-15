@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "restaurantcollection",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authrestaurantcollection0fa38b17",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
