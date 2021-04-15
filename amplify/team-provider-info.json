@@ -10,6 +10,11 @@
       "StackName": "amplify-restaurantcollection-dev-03149",
       "StackId": "arn:aws:cloudformation:us-east-2:220081748118:stack/amplify-restaurantcollection-dev-03149/a86c89b0-9dbc-11eb-b7d8-0281aed4af26",
       "AmplifyAppId": "d2oa1uxfz20rhb"
+    },
+    "categories": {
+      "auth": {
+        "restaurantcollection0fa38b17": {}
+      }
     }
   }
 }
