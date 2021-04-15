@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */ /* eslint-disable prettier/prettier */
-
 <template>
   <div>
     <form class="flex flex-col items-center" @submit.prevent="login">
@@ -29,7 +27,6 @@
 
 <script>
 import { mapActions } from "vuex";
-
 export default {
   data: () => ({
     username: "",
@@ -37,22 +34,23 @@ export default {
     email: "",
     error: "",
   }),
-
   methods: {
+
     ...mapActions({
       loginVue: "auth/login",
     }),
-  },
 
-  async login() {
-    try {
-      await this.loginVue({
-        username: this.username,
-        password: this.password,
-      });
-    } catch (err) {
-      this.error = err;
-    }
+    async login() {
+      try {
+        await this.loginVue({
+          username: this.username,
+          password: this.password,
+        });
+        this.$router.push("/collectionrestaurants");
+      } catch (error) {
+        this.error = error;
+      }
+    },
   },
 };
 </script>

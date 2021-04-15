@@ -1,34 +1,32 @@
 import { Auth } from "aws-amplify";
 export const auth = {
-  namespace: true,
-  state: { user: null },
-  mutation: {
-    setUser(state, payload) {
-      state.user = payload;
-    },
-  },
+      namespaced: true,
+      state: { user: null },
+      mutations: {
+            setUser(state, payload) {
+                  state.user = payload;
+            }
+
+      },
 
   actions: {
-    async login({ commit }, { username, password }) {
-      try {
-        // ! user sign in AWS
-        await Auth.singIn({
-          username,
-          password,
-        });
+      async login({ commit }, { username, password }) {
+            alert("log in in auth.js called")
+            try {
+                await Auth.signIn({
+                    username,
+                    password
+                });
+                const userInfo = await Auth.currentUserInfo();
+                commit("setUser", userInfo);
+                return Promise.resolve("Success");
 
-        const currentUser = await Auth.currentUserInfo();
-        // ! commit state
-        commit("setUser", currentUser);
-        return Promise.resolve("Success");
-      } catch (err) {
-        console.log(
-          "🚀 ~ file: auth.js ~ line 27 ~ loadingContainer ~ error",
-          err
-        );
-        Promise.reject(err);
-      }
-    },
+
+            } catch (error) {
+                console.log(error);
+                return Promise.reject(error);
+            }
+        },
 
     // ! Log out
     async logout({ commit }) {
