@@ -1,11 +1,9 @@
 
 
 <template>
-  <div id="app">
+  <div id="app" class="bg-gray-50 w-full h-full">
     <div id="nav">
     <Nav />
-      <router-link to="/">Restaurant collections</router-link>
-
     </div>
     <router-view />
   </div>

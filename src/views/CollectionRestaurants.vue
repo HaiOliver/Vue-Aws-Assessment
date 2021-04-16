@@ -2,21 +2,25 @@
 /* eslint-disable prettier/prettier */
 <template>
   <div>
-    <h3 class="text-3xl">Create Or Choose An Collection of Restaurant</h3>
+    <h3 class="text-7xl font-semibold antialiased hover:text-gray-600 text-opacity-100">Create Or Choose An Collection of Restaurant</h3>
+    <div class="flex flex-col m-auto w-full">
+      <h3 class="text-3xl antialiased hover:text-purple-600 text-opacity-100"><span class="text-red-600 font-bold ">Story</span>: Under unpredictable Covid-19 era, we sadly cannot go out with our friend to sharing our moment together, that would be better if we can organized all restaurants in collection for multiple purposes such
+      as my favorite restaurant, dine in or take out group. </h3>
+    </div>
 
     <div class="flex flex-col m-auto w-64">
       <input
         class="my-4 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-        placeholder="Collection Name..."
+        placeholder="Type Collection Name ..."
         type="text"
         v-model="collectionRestaurantName"
       />
-      <button class="btn-blue mb-4" @click="createCollectionRestaurant()">Create Collection</button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-8 rounded" @click="createCollectionRestaurant()">Create Collection</button>
     </div>
 
-    <div class="text-red-500">{{ error }}</div>
+
     <hr />
-    <h5 class="mt-4 text-2xl">List Of Collections</h5>
+    <h5 class="text-4xl mt-4 antialiased hover:text-red-500 text-opacity-100">List Of Collections</h5>
     <div class="flex flex-wrap w-full m-auto justify-center">
       <div
         v-for="(collection, idx) in collectionRestaurant"
@@ -24,7 +28,7 @@
         class="cursor-pointer mt-4 ml-4 w-3/12 h-24 shadow-xl flex items-center justify-center"
         @click="openCollectionDetail(collection)"
       >
-        <div class="text-2xl">{{ collection.name }}</div>
+        <div class="text-3xl mt-4 antialiased hover:text-blue-500 text-opacity-100">{{ collection.name }}</div>
       </div>
     </div>
   </div>

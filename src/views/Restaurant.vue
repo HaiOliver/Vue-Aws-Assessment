@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */ /* eslint-disable prettier/prettier */
 <template>
-  <div>
-    <h3 class="text-4xl font-semibold">Collection: {{ collectionName }}</h3>
+  <div  >
+    <h3 class="text-7xl font-semibold antialiased hover:text-gray-600 text-opacity-100 ">Collection name: {{ collectionName }}</h3>
     <div
       class="flex flex-col w-full mt-10 items-center justify-center bg-grey-lighter"
     >
@@ -47,7 +47,7 @@
             type="text"
             v-model="address"
           />
-          <button class="btn-blue mb-4" type="submit">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-8 rounded" type="submit">
             Add New restaurant
           </button>
         </div>
@@ -55,36 +55,20 @@
         <!-- ================================= -->
       </form>
     </div>
-    <div class="text-2xl mt-4">List Of Restaurants</div>
+    <div class="text-4xl mt-4 antialiased hover:text-red-500 text-opacity-100" >List Of Restaurants</div>
     <div
-      class="flex flex-wrap p-10 justify-center m-auto w-full"
+      class="flex flex-wrap p-10 justify-center m-auto w-full "
       v-if="restaurants"
     >
     <!-- ============================================== -->
 
       <div
-        class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 shadow-lg"
+        class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 shadow-lg m-1 "
         v-for="(restaurant, idx) in restaurants"
         :key="idx"
       >
-        <!-- <amplify-s3-image
-          level="protected"
-          :img-key="restaurant.fullsize.key"
-          class="w-4/12"
-        >
-        </amplify-s3-image>
 
-        <div v-if="restaurant.createdAt">
-          <ul>
-            <li>Restaurant: {{ restaurant.name }}</li>
-            <li>Address: {{ restaurant.address }}</li>
-            <li>Create at: {{ restaurant.createdAt }}</li>
-          </ul>
-        </div> -->
-
-
-
-<article class="overflow-hidden rounded-lg shadow-lg">
+        <article class="overflow-hidden rounded-lg shadow-lg">
 
                     <amplify-s3-image
                       level="protected"
