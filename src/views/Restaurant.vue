@@ -24,7 +24,7 @@
                 d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
               />
             </svg>
-            <span class="mt-2 text-base leading-normal">Select a file</span>
+            <span class="mt-2 text-base leading-normal">Upload a image</span>
             <input
               @change="onFileChange"
               accept="image/*"
@@ -37,13 +37,13 @@
         <div class="form-group flex flex-col m-auto w-64">
           <input
             class="my-4 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-            placeholder="Name restaurant..."
+            placeholder="add name restaurant ..."
             type="text"
             v-model="nameRestaurant"
           />
           <input
             class="my-4 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-            placeholder="Address..."
+            placeholder=" add address ..."
             type="text"
             v-model="address"
           />
@@ -60,12 +60,14 @@
       class="flex flex-wrap p-10 justify-center m-auto w-full"
       v-if="restaurants"
     >
+    <!-- ============================================== -->
+
       <div
-        class="shadow-xl ml-4 mt-4 w-4/12"
+        class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 shadow-lg"
         v-for="(restaurant, idx) in restaurants"
         :key="idx"
       >
-        <amplify-s3-image
+        <!-- <amplify-s3-image
           level="protected"
           :img-key="restaurant.fullsize.key"
           class="w-4/12"
@@ -78,8 +80,51 @@
             <li>Address: {{ restaurant.address }}</li>
             <li>Create at: {{ restaurant.createdAt }}</li>
           </ul>
-        </div>
+        </div> -->
+
+
+
+<article class="overflow-hidden rounded-lg shadow-lg">
+
+                    <amplify-s3-image
+                      level="protected"
+                      :img-key="restaurant.fullsize.key"
+                      class="w-4/12 block h-auto w-full"
+                    >
+                    </amplify-s3-image>
+
+                <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+                    <h1 class="text-lg">
+
+                             {{ restaurant.name }}
+
+                    </h1>
+                    <p class="text-grey-darker text-sm">
+                        Create at: {{ restaurant.createdAt.slice(0,10) }}
+                    </p>
+                </header>
+
+                <footer class="flex items-center justify-between leading-none p-2 md:p-4">
+                    <a class="flex items-center no-underline hover:underline text-black" href="#">
+                        <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
+                        <p class="ml-2 text-sm">
+                            Address: {{ restaurant.address }}
+                        </p>
+                    </a>
+
+                </footer>
+
+            </article>
+
+
+
       </div>
+
+
+
+
+      <!-- =================================== -->
+
     </div>
   </div>
 </template>
@@ -119,14 +164,6 @@ export default {
           }
         );
 
-        console.log(
-          "🚀 ~ file: Restaurant.vue ~ line 89 ~ onFileChange ~ this.address: ",
-          this.address
-        );
-        console.log(
-          "🚀 ~ file: Restaurant.vue ~ line 89 ~ onFileChange ~ this.name: ",
-          this.name
-        );
         // ! Render all restaurants on pages
         this.getAllRestaurants();
 
