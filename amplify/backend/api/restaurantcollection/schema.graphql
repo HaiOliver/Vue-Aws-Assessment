@@ -1,5 +1,3 @@
-
-
 type CollectionRestaurants
   @model
   @auth(rules: [{ allow: owner }])

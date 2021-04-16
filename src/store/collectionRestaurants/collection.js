@@ -43,6 +43,7 @@ export const collectionRestaurantInfo = {
             const collectionRestaurantData = await API.graphql(graphqlOperation(listCollectionRestaurantss));
             commit("setCollectionRestaurant", collectionRestaurantData.data.listCollectionRestaurantss.items);
         },
+        // ! add new restaurant in DB
         async createRestaurant(_, data) {
             const {
                 aws_user_files_s3_bucket_region: region,
@@ -55,11 +56,10 @@ export const collectionRestaurantInfo = {
 
             const key = `images/${restaurantId}.${extension}`;
 
-            const inputData = {
-
+            const Data = {
                 id: restaurantId,
                 name:"oliver",
-                address:"test address",
+                address: "test address",
                 contentType: mimeType,
                 fullsize: {
                     key,
@@ -70,19 +70,26 @@ export const collectionRestaurantInfo = {
 
             //s3 bucket storage add file to it
             try {
-                await Storage.put(key, file, {
+                 await Storage.put(key, file, {
                     level: "protected",
                     contentType: mimeType,
                     metadata: { collectionRestaurantId: id, restaurantId }
                 })
-                await API.graphql(
-                    graphqlOperation(createRestaurant, { input: inputData })
+
+
+                const obj = await API.graphql(
+                    graphqlOperation(createRestaurant, { input: Data })
                 )
+                console.log("🚀 ~ file: collection.js ~ line 83 ~ createRestaurant ~ test add new restaurant into collection: ", obj.data)
+
+
+
+
                 return Promise.resolve("success");
 
 
             } catch (error) {
-                console.log("line 87, error add new image: ", error)
+                console.log("line 87 ==============================>, error add new image: ", error)
                 return Promise.reject(error);
 
             }

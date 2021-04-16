@@ -22,7 +22,7 @@
         </label>
       </form>
       <!-- =================================== -->
-      <div class="flex flex-col m-auto w-64">
+      <!-- <div class="flex flex-col m-auto w-64">
         <input
           class="my-4 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
           placeholder="Name restaurant..."
@@ -36,27 +36,26 @@
           v-model="addess"
         />
         <button class="btn-blue mb-4" @click="createCollectionRestaurant()">Add New restaurant</button>
-      </div>
+      </div> -->
       <!-- ================================= -->
     </div>
     <div class="text-2xl mt-4">List Of Restaurants</div>
     <div class="flex flex-wrap p-10 justify-center m-auto w-full" v-if="restaurants">
       <div class="shadow-xl ml-4 mt-4 w-4/12" v-for="(restaurant, idx) in restaurants" :key="idx">
+
         <amplify-s3-image
           level="protected"
           :img-key="restaurant.fullsize.key"
           class="w-4/12"
-        ></amplify-s3-image>
+        >
+        </amplify-s3-image>
+
         <div v-if="restaurant.createdAt">
           <ul>
             <li>Created At {{ restaurant.createdAt }}</li>
-            <!-- <li>
-              latitude
-              {{ photo.gps.latitude }}
-            </li>
-            <li>longitude At {{ photo.gps.longitude }}</li> -->
           </ul>
         </div>
+
       </div>
     </div>
   </div>
@@ -82,11 +81,17 @@ export default {
         return;
       }
       try {
-        await this.$store.dispatch("collectionRestaurantInfo/createRestaurant", {
+
+        const newCreatedRestaurant = await this.$store.dispatch("collectionRestaurantInfo/createRestaurant", {
           file: file.target.files[0],
           id: this.id,
         });
+
+
+        console.log("🚀 ~ file: Restaurant.vue ~ line 89 ~ onFileChange ~ newCreatedRestaurant", newCreatedRestaurant)
+        // ! Render all restaurants on pages
         this.getAllRestaurants();
+
       } catch (error) {
         console.log("error create restaurant", error);
       }
@@ -94,7 +99,11 @@ export default {
 
     async getAllRestaurants() {
       const collection = await this.$store.dispatch("collectionRestaurantInfo/getRestaurantCollections", this.id);
+
       this.restaurants = collection.data.getCollectionRestaurants.restaurants.items;
+
+      console.log("🚀 ~ file: Restaurant.vue ~ line 103 ~ getAllRestaurants ~ restaurants", collection.data)
+
       this.collectionName = collection.data.getCollectionRestaurants.name;
     },
   },
@@ -106,7 +115,7 @@ export default {
 };
 </script>
 
-<style  scoped>
+<style scoped>
 amplify-s3-image {
   --width: 75%;
 }
