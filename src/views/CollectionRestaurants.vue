@@ -2,7 +2,8 @@
 /* eslint-disable prettier/prettier */
 <template>
   <div>
-    <h3 class="text-3xl">Create Or Choose An Album</h3>
+    <h3 class="text-3xl">Create Or Choose An Collection of Restaurant</h3>
+
     <div class="flex flex-col m-auto w-64">
       <input
         class="my-4 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
@@ -12,6 +13,7 @@
       />
       <button class="btn-blue mb-4" @click="createCollectionRestaurant()">Create Collection</button>
     </div>
+
     <div class="text-red-500">{{ error }}</div>
     <hr />
     <h5 class="mt-4 text-2xl">List Of Collections</h5>

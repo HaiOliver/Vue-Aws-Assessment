@@ -49,7 +49,8 @@ export const collectionRestaurantInfo = {
                 aws_user_files_s3_bucket_region: region,
                 aws_user_files_s3_bucket: bucket
             } = awsconfig;
-            const { file, type: mimeType, id } = data;
+            const { file, type: mimeType, id , name, address} = data;
+
 
             const extension = file.name.substr(file.name.lastIndexOf(".") + 1);
             const restaurantId = uuid();
@@ -59,8 +60,8 @@ export const collectionRestaurantInfo = {
             const Data = {
                 id: restaurantId,
                 restaurantCollectionId:id,
-                name:"oliver",
-                address: "test address",
+                name:name,
+                address: address,
                 contentType: mimeType,
                 fullsize: {
                     key,
@@ -79,13 +80,10 @@ export const collectionRestaurantInfo = {
                 })
 
 
-                const obj = await API.graphql(
+                await API.graphql(
                     graphqlOperation(createRestaurant, { input: Data })
                 )
-                console.log("🚀 ~ file: collection.js ~ line 83 ~ createRestaurant ~ test add new restaurant into collection: ", obj.data)
-
-
-
+                // console.log("🚀 ~ file: collection.js ~ line 83 ~ createRestaurant ~ test add new restaurant into collection: ", obj.data)
 
                 return Promise.resolve("success");
 
