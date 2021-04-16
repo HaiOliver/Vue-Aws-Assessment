@@ -1,5 +1,44 @@
-type Todo @model {
+
+
+type CollectionRestaurants
+  @model
+  @auth(rules: [{ allow: owner }])
+{
+  id: ID!
+  owner: ID!
+  ownerId: String!
+  name: String!
+  createdAt: String
+  updatedAt: String
+  restaurants: [Restaurant] @connection(name: "Collection", sortField: "createdAt")
+}
+
+type Restaurant
+  @model
+  @auth(
+    rules: [
+      { allow: owner },
+      { allow: private, operations: [ read, update ] }
+    ]
+  )
+{
   id: ID!
   name: String!
-  description: String
+  address: String!
+  createdAt: String
+  updatedAt: String
+  collection: CollectionRestaurants @connection(name: "Collection", sortField: "createdAt")
+  fullsize: S3Object!
+  thumbnail: S3Object
+  contentType: String
+  height: Int
+  width: Int
+  size: Int
 }
+
+type S3Object @aws_iam @aws_cognito_user_pools {
+  region: String!
+  bucket: String!
+  key: String!
+}
+

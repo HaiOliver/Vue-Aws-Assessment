@@ -2,10 +2,12 @@
 // import Vuex from "vuex";
 import { auth } from "./auth/auth";
 import { createStore } from 'vuex';
+import {collectionRestaurantInfo} from "./collectionRestaurants/collection";
 
 const store = createStore({
   modules: {
-    auth
+    auth,
+    collectionRestaurantInfo
   }
 });
 
@@ -16,6 +18,7 @@ export default store;
 
 // export default new Vuex.Store({
 //   modules: {
-//     auth
+//     auth,
+
 //   }
 // });
