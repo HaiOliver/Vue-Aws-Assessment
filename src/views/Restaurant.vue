@@ -68,8 +68,7 @@
         :key="idx"
       >
 
-        <article class="overflow-hidden rounded-lg shadow-lg">
-
+        <article class="overflow-hidden shadow-lg">
                     <amplify-s3-image
                       level="protected"
                       :img-key="restaurant.fullsize.key"
@@ -78,24 +77,19 @@
                     </amplify-s3-image>
 
                 <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                    <h1 class="text-lg">
-
+                    <h1 class="text-3xl font-semibold antialiased hover:text-blue-600 text-opacity-100">
                              {{ restaurant.name }}
-
                     </h1>
                     <p class="text-grey-darker text-sm">
                         Create at: {{ restaurant.createdAt.slice(0,10) }}
                     </p>
                 </header>
 
-                <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                    <a class="flex items-center no-underline hover:underline text-black" href="#">
+                <footer class="flex items-center justify-start leading-none p-2 md:p-4">
                         <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
                         <p class="ml-2 text-sm">
-                            Address: {{ restaurant.address }}
+                            <span class="text-1xl font-semibold antialiased">Address:</span> {{ restaurant.address }}
                         </p>
-                    </a>
-
                 </footer>
 
             </article>

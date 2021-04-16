@@ -3,12 +3,12 @@
     <ul class="flex justify-end">
       <li class="mr-6" v-if="!user">
         <router-link to="/">
-          <a class="text-blue-500 hover:text-blue-800 cursor-pointer">Login</a>
+          <a class="text-blue-500 hover:text-blue-800 cursor-pointer text-3xl">Login</a>
         </router-link>
       </li>
       <li class="mr-6" v-if="!user">
         <router-link to="/signup">
-          <a class="text-blue-500 hover:text-blue-800 cursor-pointer">Sign Up</a>
+          <a class="text-blue-500 hover:text-blue-800 cursor-pointer text-3xl">Sign Up</a>
         </router-link>
       </li>
       <li class="mr-6" v-if="user">
@@ -16,11 +16,11 @@
       </li>
       <li class="mr-6" v-if="user">
         <router-link to="/collectionrestaurants">
-          <div class="text-blue-500 hover:text-blue-800 cursor-pointer">Collection restaurant</div>
+          <div class="text-blue-500 hover:text-blue-800 cursor-pointer text-3xl">Collection restaurant</div>
         </router-link>
       </li>
       <li class="mr-6" v-if="user">
-        <div class="text-blue-500 hover:text-blue-800 cursor-pointer" @click="logout">Logout</div>
+        <div class="text-blue-500 hover:text-blue-800 cursor-pointer text-3xl" @click="logout">Logout</div>
       </li>
     </ul>
   </div>
