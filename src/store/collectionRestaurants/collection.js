@@ -58,6 +58,7 @@ export const collectionRestaurantInfo = {
 
             const Data = {
                 id: restaurantId,
+                restaurantCollectionId:id,
                 name:"oliver",
                 address: "test address",
                 contentType: mimeType,
@@ -67,6 +68,7 @@ export const collectionRestaurantInfo = {
                     bucket
                 }
             }
+            console.log("🚀 ~ file: collection.js ~ line 70 ~ createRestaurant ~ Data", Data)
 
             //s3 bucket storage add file to it
             try {
