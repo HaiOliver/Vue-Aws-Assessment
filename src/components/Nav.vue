@@ -15,8 +15,8 @@
         <div class="font-semibold text-black-500">Welcome {{ user.username }}</div>
       </li>
       <li class="mr-6" v-if="user">
-        <router-link to="/albums">
-          <div class="text-blue-500 hover:text-blue-800 cursor-pointer">Albums</div>
+        <router-link to="/collectionrestaurants">
+          <div class="text-blue-500 hover:text-blue-800 cursor-pointer">Collection restaurant</div>
         </router-link>
       </li>
       <li class="mr-6" v-if="user">

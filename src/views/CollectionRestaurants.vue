@@ -40,7 +40,7 @@ export default {
   methods: {
     openCollectionDetail(collection) {
 
-      console.log("🚀 ~ file: CollectionRestaurants.vue ~ line 41 ~ openCollectionDetail ~ collection", collection)
+      console.log("🚀 ~ file: CollectionRestaurants.vue ~ line 41 ~ openCollectionDetail ~ collection.id", collection.id)
       this.$router.push(`/restaurant/${collection.id}`);
     },
     async createCollectionRestaurant() {
